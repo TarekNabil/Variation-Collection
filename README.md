@@ -53,4 +53,4 @@ Collection will be displayed under related products. If no collection selected, 
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under GPL-3.0 License.
