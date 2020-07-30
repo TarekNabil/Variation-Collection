@@ -5,7 +5,7 @@ Woocommerce Extension to add custom variation cololection for each product varia
 
 ### Prerequisites
 
-This Plugin Woocommerce to be installed and activated
+This Plugin requires Woocommerce to be installed and activated.
 
 Requires at least: Woordpress 5.4 , Woocommerce 4.3
 
@@ -43,7 +43,6 @@ Collection will be displayed under related products. If no collection selected, 
 ## Authors
 
 * **Tarek Nabil** 
-
 
  
 ### Changelog 
