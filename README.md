@@ -2,10 +2,6 @@
 
 Woocommerce Extension to add custom variation cololection for each product variation.
 
-## Description
-
-Woocommerce Extension to add custom variation cololection for each product variation.
-
 
 ### Prerequisites
 
