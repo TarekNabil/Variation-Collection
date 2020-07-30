@@ -53,4 +53,4 @@ Collection will be displayed under related products. If no collection selected, 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License.
