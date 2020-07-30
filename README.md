@@ -12,7 +12,9 @@ Woocommerce Extension to add custom variation cololection for each product varia
 This Plugin Woocommerce to be installed and activated
 
 Requires at least: Woordpress 5.4 , Woocommerce 4.3
+
 Tested up to: Wordpress 5.4.2 , Woocommerce 4.3
+
 Requires PHP: 7.1
 
 ### Installing
@@ -57,4 +59,3 @@ Collection will be displayed under related products. If no collection selected, 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
