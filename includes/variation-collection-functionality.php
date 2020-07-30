@@ -1,4 +1,4 @@
-incl<?php
+<?php
 /**
  * ariation Collection Functionality
  *
