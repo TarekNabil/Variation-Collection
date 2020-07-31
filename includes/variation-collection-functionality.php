@@ -57,6 +57,7 @@ class Variation_Collection_Functionality {
 	
 	public static function variation_collection_add_custom_variations(){
 		global $product;
+		if( !$product->is_type( 'variable' ) )return;
 		$available_variations = $product->get_available_variations(); 
 		foreach ($available_variations as $value) {
 			$custom_select_ids = explode(',', $value["variation_custom_select"]);
