@@ -1,6 +1,6 @@
 # Variation Collection 
 
-> Woocommerce Extension to add custom variation cololection for each product variation.
+> Woocommerce Extension to add custom variation collection for each product variation.
 
 
 ### Prerequisites
