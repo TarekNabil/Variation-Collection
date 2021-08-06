@@ -67,7 +67,7 @@ if ( ! class_exists( 'variation_collection' ) ) {
 				$this->includes();
 			}
 			add_action('woocommerce_after_single_product_summary', array( 'Variation_Collection_Functionality', 'variation_collection_add_custom_variations'), 19 );
-			
+
 			add_action( 'woocommerce_variation_options_pricing', array( 'Variation_Collection_Functionality','variation_collection_add_input'), 10, 3 );
 			add_action( 'woocommerce_save_product_variation', array( 'Variation_Collection_Functionality','variation_collection_save_data'), 10, 2 );
 			add_filter( 'woocommerce_available_variation', array( 'Variation_Collection_Functionality','variation_collection_add_data') );
@@ -82,7 +82,7 @@ if ( ! class_exists( 'variation_collection' ) ) {
 				}else{
 					return  __( 'Related products', 'woocommerce' ) ;
 				}
-				
+
 			},1);
 
 		}
@@ -132,7 +132,7 @@ if ( ! class_exists( 'variation_collection' ) ) {
 		public function fallback_notice() {
 
 			echo '<div class="error">';
-			echo '<p>' . __( 'Please install and activate <strong>WooCommerce</strong> plugin to make the <strong>Variation Collection Plugin</strong> work.', 'variationtion_collection' ) . '</p>';
+			echo '<p>' . __( '<strong>Variation Collection Plugin</strong> is active now but not functional, Please install and activate <strong>WooCommerce</strong> plugin to make it effective.', 'variationtion_collection' ) . '</p>';
 			echo '</div>';
 		}
 	}
