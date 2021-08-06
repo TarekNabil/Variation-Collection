@@ -7,9 +7,9 @@
 
 This Plugin requires Woocommerce to be installed and activated.
 
-Requires at least: Woordpress 5.4.2 , Woocommerce 4.3
+Requires at least: Woordpress 5.4.2 , Woocommerce 4.4
 
-Tested up to: Wordpress 5.4.2 , Woocommerce 4.3
+Tested up to: Wordpress 5.4.2 , Woocommerce 4.4
 
 Requires PHP: 7.1
 
