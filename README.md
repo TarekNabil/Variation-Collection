@@ -1,15 +1,15 @@
 # Variation Collection
 
-> Woocommerce Extension to add custom variation collection for each product variation.
+> WooCommerce Extension to add custom variation collection for each product variation.
 
 
 ### Prerequisites
 
-This Plugin requires Woocommerce to be installed and activated.
+This Plugin requires WooCommerce to be installed and activated.
 
-Requires at least: Woordpress 5.4.2 , Woocommerce 4.4
+Requires at least: Woordpress 5.4.2 , WooCommerce 4.4
 
-Tested up to: Wordpress 5.4.2 , Woocommerce 4.4
+Tested up to: Wordpress 5.4.2 , WooCommerce 4.4
 
 Requires PHP: 7.1
 
@@ -20,14 +20,14 @@ Requires PHP: 7.1
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Open variable product.
 4. In variations tab, Open any variation and you will find new field called "Variation Collection".
-5. Enter collection products ID seprate By Commas and you will see that products in a section under related products for each variation.
+5. Enter collection products ID separate By Commas and you will see that products in a section under related products for each variation.
 6. That will view collection of products that meets every variation of the product.
 
 ### Frequently Asked Questions
 
 #### Why using Variation Collection?
 
-If you have a collection of products for each variation. Example, If you have a T-shirt with variable colors (Red, Blue, Black, etc..), you will need to add the matching collection of pants and footware (Red T-shirt will match blue pants and red shoe). That will be changed with each variant.
+If you have a collection of products for each variation. Example, If you have a T-shirt with variable colors (Red, Blue, Black, etc..), you will need to add the matching collection of pants and footwear (Red T-shirt will match blue pants and red shoe). That will be changed with each variant.
 
 #### How will user see the collection?
 

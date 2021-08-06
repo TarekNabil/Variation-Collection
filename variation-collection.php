@@ -3,7 +3,7 @@
  * Plugin Name: Variation Collection
  * Version: 1.0.0
  * Plugin URI: https://tareknabil.net/variation-collection/
- * Description: Woocommerce Extension to add custom variation cololection for each product variation.
+ * Description: WooCommerce Extension to add custom variation cololection for each product variation.
  * Author: Tarek Nabil
  * Author URI: https://tareknabil.net
  * Requires at least: 4.4.0
