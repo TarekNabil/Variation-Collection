@@ -27,27 +27,53 @@ class Variation_Collection_Functionality {
 	}
 
 
-	// Add custom field input @ Product Data > Variations > Single Variation
+	// Add select input @ Product Data > Variations > Single Variation
 
-	static public function variation_collection_add_input( $loop, $variation_data, $variation ) {
-		$tip =  '<span style="float:right">'.wc_help_tip( __( 'Add Products that matches this variation collection', 'woocommerce' ) ).'</span>'; // WPCS: XSS ok.
-		woocommerce_wp_text_input( array(
-				'id' => 'variation_custom_select[' . $loop . ']',
-				'class' => 'vrn_cln_label chzn-select',
-				'label' => __( 'Variation Collection:'.$tip, 'variation_collection' ),
-				'placeholder' => 'Enter products ID seprate By Commas',
-				'value' => get_post_meta( $variation->ID, 'variation_custom_select', true )
-			)
-		);
+		static public function variation_collection_add_select_input($loop, $variation_data, $variation) {
+
+			$variatoin_ids = get_post_meta( $variation->ID, 'variation_custom_select', true );
+			$product_ids =  $variatoin_ids;
+	    if( empty($product_ids) )
+	        $product_ids = array();
+	    ?>
+	    <div class="options_group">
+
+	            <p class="form-field">
+	                <label for="variation_custom_select"><?php _e( 'Variation Collection:', 'woocommerce' ); ?></label>
+									<?php echo wc_help_tip( __( 'Add Products that matches this variation collection.', 'woocommerce' ) ); ?>
+	                <select
+									class="wc-product-search"
+									multiple="multiple"
+									style="width: 100%;"
+									id="variation_custom_select[<?php echo $loop;?>]"
+									name="variation_custom_select[<?php echo $loop;?>][]"
+									data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>"
+									data-action="woocommerce_json_search_products_and_variations"
+									>
+	                    <?php
+
+												error_log(print_r($product_ids, true));
+	                        foreach ( $product_ids as $product_id ) {
+	                            $product = wc_get_product( $product_id );
+	                            if ( is_object( $product ) ) {
+	                                echo '<option value="' . esc_attr( $product_id ) . '"' . selected( true, true, false ) . '>' . wp_kses_post( $product->get_formatted_name() ) . '</option>';
+	                            }
+	                        }
+	                    ?>
+	                </select>
+	            </p>
+
+	    </div>
+	    <?php
 
 	}
 
 	// Save custom field on product variation save
 
-
 	public function variation_collection_save_data( $variation_id, $i ) {
 		$variation_custom_select = $_POST['variation_custom_select'][$i];
-		if ( isset( $variation_custom_select ) ) update_post_meta( $variation_id, 'variation_custom_select', esc_attr( $variation_custom_select ) );
+
+		if ( isset( $variation_custom_select ) ) update_post_meta( $variation_id, 'variation_custom_select',  $variation_custom_select  );
 	}
 
 	//  Store custom field value into variation data
@@ -62,7 +88,7 @@ class Variation_Collection_Functionality {
 		if( !$product->is_type( 'variable' ) )return;
 		$available_variations = $product->get_available_variations();
 		foreach ($available_variations as $value) {
-			$custom_select_ids = explode(',', $value["variation_custom_select"]);
+			$custom_select_ids = $value["variation_custom_select"];
 			$myloop=array();
 			foreach  ($custom_select_ids as $custom_select_id) {
 				$myloop[]= $custom_select_id;

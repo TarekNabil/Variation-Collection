@@ -67,8 +67,7 @@ if ( ! class_exists( 'variation_collection' ) ) {
 				$this->includes();
 			}
 			add_action('woocommerce_after_single_product_summary', array( 'Variation_Collection_Functionality', 'variation_collection_add_custom_variations'), 19 );
-
-			add_action( 'woocommerce_variation_options_pricing', array( 'Variation_Collection_Functionality','variation_collection_add_input'), 10, 3 );
+			add_action( 'woocommerce_variation_options_pricing', array( 'Variation_Collection_Functionality','variation_collection_add_select_input'), 10, 3 );
 			add_action( 'woocommerce_save_product_variation', array( 'Variation_Collection_Functionality','variation_collection_save_data'), 10, 2 );
 			add_filter( 'woocommerce_available_variation', array( 'Variation_Collection_Functionality','variation_collection_add_data') );
 			add_action( 'wp_enqueue_scripts', array( 'Variation_Collection_Functionality','enqueue_js_scripts') );
