@@ -89,6 +89,7 @@ class Variation_Collection_Functionality {
 		$available_variations = $product->get_available_variations();
 		foreach ($available_variations as $value) {
 			$custom_select_ids = $value["variation_custom_select"];
+			if (!is_array($custom_select_ids) || empty($custom_select_ids)) return;
 			$myloop=array();
 			foreach  ($custom_select_ids as $custom_select_id) {
 				$myloop[]= $custom_select_id;
