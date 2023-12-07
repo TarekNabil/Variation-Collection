@@ -86,13 +86,10 @@ class Variation_Collection_Functionality {
 		global $product;
 		if( !$product->is_type( 'variable' ) )return;
 		$available_variations = $product->get_available_variations();	
-		// var_dump($available_variations);
 		foreach ($available_variations as $value) {
-			var_dump($value);
 			$custom_select_ids = $value["variation_custom_select"];
 			// I think return is not the best way to avoid such case
 			if (!is_array($value) || empty($custom_select_ids)) return;
-			// var_dump($custom_select_ids);
 			// TODO: improve this 2 layer loop
 			$myloop=array();
 			foreach  ($custom_select_ids as $custom_select_id) {
