@@ -52,7 +52,6 @@ class Variation_Collection_Functionality {
 									>
 	                    <?php
 
-												error_log(print_r($product_ids, true));
 	                        foreach ( $product_ids as $product_id ) {
 	                            $product = wc_get_product( $product_id );
 	                            if ( is_object( $product ) ) {
@@ -70,7 +69,7 @@ class Variation_Collection_Functionality {
 
 	// Save custom field on product variation save
 
-	public function variation_collection_save_data( $variation_id, $i ) {
+	public static function variation_collection_save_data( $variation_id, $i ) {
 		$variation_custom_select = $_POST['variation_custom_select'][$i];
 
 		if ( isset( $variation_custom_select ) ) update_post_meta( $variation_id, 'variation_custom_select',  $variation_custom_select  );
@@ -86,12 +85,18 @@ class Variation_Collection_Functionality {
 	public static function variation_collection_add_custom_variations(){
 		global $product;
 		if( !$product->is_type( 'variable' ) )return;
-		$available_variations = $product->get_available_variations();
+		$available_variations = $product->get_available_variations();	
+		// var_dump($available_variations);
 		foreach ($available_variations as $value) {
+			var_dump($value);
 			$custom_select_ids = $value["variation_custom_select"];
-			if (!is_array($custom_select_ids) || empty($custom_select_ids)) return;
+			// I think return is not the best way to avoid such case
+			if (!is_array($value) || empty($custom_select_ids)) return;
+			// var_dump($custom_select_ids);
+			// TODO: improve this 2 layer loop
 			$myloop=array();
 			foreach  ($custom_select_ids as $custom_select_id) {
+
 				$myloop[]= $custom_select_id;
 			}
 			if( sizeof($myloop) > 0 ) self:: create_section($myloop, $value["variation_id"]);
