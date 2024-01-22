@@ -83,6 +83,11 @@ if ( ! class_exists( 'variation_collection' ) ) {
 				}
 
 			},1);
+			//Add 2 Filters to Variation collection column  to the exporter and the exporter column menu.
+			add_filter( 'woocommerce_product_export_column_names', array('Variation_Collection_Functionality','add_export_column') );
+			add_filter( 'woocommerce_product_export_product_default_columns', array('Variation_Collection_Functionality','add_export_column' ));
+			// Filter to add the data
+			add_filter( 'woocommerce_product_export_product_column_variation_collection', array('Variation_Collection_Functionality','add_export_data'), 10, 2 );
 
 		}
 

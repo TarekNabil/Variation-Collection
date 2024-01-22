@@ -134,6 +134,34 @@ class Variation_Collection_Functionality {
 		register_setting( 'variation-collection-settings-group', 'variation_collection_section_title' );
 
 	}
+	/**
+	 * Add the Variation collection column to the exporter and the exporter column menu.
+	 *
+	 * @param array $columns
+	 * @return array $columns
+	 */
+	public static function add_export_column( $columns ) {
+
+		$columns['variation_collection'] = 'Variation Collection';
+		return $columns;
+	}
+	/**
+	 * Provide the data to be exported for one item in the column.
+	 *
+	 * @param mixed $value (default: '')
+	 * @param WC_Product $product
+	 * @return mixed $value - Should be in a format that can be output into a text file (string, numeric, etc).
+	 */
+	public static function add_export_data( $value, $product ) {
+
+		if ($product->get_parent_id()) { 
+			$variation_collection = $product->get_meta('variation_custom_select', true);
+			$value = ($variation_collection) ? json_encode($variation_collection) : 'No Collection' ;
+		}else{ 
+			$value =  "Parent Product";
+		}
+		return $value;
+	}
 
 }
 
