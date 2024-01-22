@@ -162,6 +162,52 @@ class Variation_Collection_Functionality {
 		}
 		return $value;
 	}
+	/**
+	 * Register the 'Variation Collection' column in the importer.
+	 *
+	 * @param array $options
+	 * @return array $options
+	 */
+	public static function add_column_to_importer( $options ) {
+
+		// column slug => column name
+		$options['variation_collection'] = 'Variation Collection';
+
+		return $options;
+	}
+	
+
+	/**
+	 * Add automatic mapping support for 'Custom Column'. 
+	 * This will automatically select the correct mapping for columns named 'Custom Column' or 'custom column'.
+	 *
+	 * @param array $columns
+	 * @return array $columns
+	 */
+	public static function add_column_to_mapping_screen( $columns ) {
+		
+		$columns['Variation Collection'] = 'variation_collection';
+		$columns['variation collection'] = 'variation_collection';
+
+		return $columns;
+	}
+
+	/**
+	 * Process the data read from the CSV file.
+	 * This just saves the value in meta data, but you can do anything you want here with the data.
+	 *
+	 * @param WC_Product $object - Product being imported or updated.
+	 * @param array $data - CSV data read for the product.
+	 * @return WC_Product $object
+	 */
+	public static function process_import( $object, $data ) {
+		
+		if ( ! empty( $data['variation_collection'] ) ) {
+			$object->update_meta_data( 'variation_custom_select', json_decode( $data['variation_collection']) );
+		}
+		
+		return $object;
+	}
 
 }
 
