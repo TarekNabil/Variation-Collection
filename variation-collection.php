@@ -88,6 +88,12 @@ if ( ! class_exists( 'variation_collection' ) ) {
 			add_filter( 'woocommerce_product_export_product_default_columns', array('Variation_Collection_Functionality','add_export_column' ));
 			// Filter to add the data
 			add_filter( 'woocommerce_product_export_product_column_variation_collection', array('Variation_Collection_Functionality','add_export_data'), 10, 2 );
+			// Add filter to register the 'Variation Collection' column in the importer.
+			add_filter( 'woocommerce_csv_product_import_mapping_options', array('Variation_Collection_Functionality','add_column_to_importer') );
+			//Filter to add automatic mapping support for 'Custom Column'. 
+			add_filter( 'woocommerce_csv_product_import_mapping_default_columns', array('Variation_Collection_Functionality','add_column_to_mapping_screen') );
+			//Add filter to process the data read from the CSV file.
+			add_filter( 'woocommerce_product_import_pre_insert_product_object', array('Variation_Collection_Functionality','process_import'), 10, 2 );
 
 		}
 
