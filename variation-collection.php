@@ -71,18 +71,14 @@ if ( ! class_exists( 'variation_collection' ) ) {
 			add_action( 'woocommerce_save_product_variation', array( 'Variation_Collection_Functionality','variation_collection_save_data'), 10, 2 );
 			add_filter( 'woocommerce_available_variation', array( 'Variation_Collection_Functionality','variation_collection_add_data') );
 			add_action( 'wp_enqueue_scripts', array( 'Variation_Collection_Functionality','enqueue_js_scripts') );
-			add_filter('woocommerce_product_related_products_heading',function(){
-				if('variation_collection_loop'===wc_get_loop_prop('name')){
+			add_filter('variation_collection_products_heading',function(){
 					if(get_option('variation_collection_section_title')){
 						return get_option('variation_collection_section_title');
 					}else{
 						return  __( 'Shop The Collection', 'variation_collection' ) ;
 					}
-				}else{
-					return  __( 'Related products', 'woocommerce' ) ;
-				}
-
 			},1);
+
 			//Add 2 Filters to Variation collection column  to the exporter and the exporter column menu.
 			add_filter( 'woocommerce_product_export_column_names', array('Variation_Collection_Functionality','add_export_column') );
 			add_filter( 'woocommerce_product_export_product_default_columns', array('Variation_Collection_Functionality','add_export_column' ));
