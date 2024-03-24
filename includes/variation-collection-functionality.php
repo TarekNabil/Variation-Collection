@@ -82,32 +82,49 @@ class Variation_Collection_Functionality {
 		return $variations;
 	}
 
-	public static function variation_collection_add_custom_variations(){
+	/**
+	 * extract product variations and get each variation collection ids
+	 *
+	 */
+	public static function variation_collection_add_custom_variations() {
 		global $product;
-		if( !$product->is_type( 'variable' ) )return;
-		$available_variations = $product->get_available_variations();	
-		foreach ($available_variations as $value) {
-			$custom_select_ids = $value["variation_custom_select"];
-			// I think return is not the best way to avoid such case
-			if (!is_array($value) || empty($custom_select_ids)) return;
-			// TODO: improve this 2 layer loop
-			$myloop=array();
-			foreach  ($custom_select_ids as $custom_select_id) {
 
-				$myloop[]= $custom_select_id;
+		if ( ! $product->is_type( 'variable' ) ) {
+			return;
+		}
+
+		foreach ( $product->get_available_variations() as $variation ) {
+			$variation_ids = $variation['variation_custom_select'];
+
+			if ( empty( $variation_ids ) ) {
+				continue;
 			}
-			if( sizeof($myloop) > 0 ) self:: create_section($myloop, $value["variation_id"]);
+
+			self::create_section( $variation_ids, $variation['variation_id'] );
 		}
 	}
 
-	public static function create_section($myloop, $variation_id){
+	public static function create_section($products, $variation_id) {
+		$heading = apply_filters( 'variation_collection_products_heading', __( 'Collection', 'woocommerce' ) );
 
-		echo '<div style="display:none;" id="custom-variation-for-'.$variation_id.'" class="custom_variations">';
-		$args = array('related_products'=> array_filter( array_map( 'wc_get_product', $myloop )));
-		wc_set_loop_prop( 'name', 'variation_collection_loop' );
-		wc_get_template( 'single-product/related.php', $args );
-		echo'</div>';
+		echo '<section style="display:none;" class="custom_variations products custom-variation-for-' . esc_attr( $variation_id ) . '">';
+
+		if ( $heading ) {
+			echo '<h2>' . esc_html( $heading ) . '</h2>';
+		}
+
+		woocommerce_product_loop_start();
+
+		foreach ( $products as $product_id ) {
+			$post_object = get_post( $product_id );
+			setup_postdata( $post_object );
+			wc_get_template_part( 'content', 'product' );
+		}
+
+		woocommerce_product_loop_end();
+		echo '</section>';
 	}
+	
 
 	public static function enqueue_js_scripts(){
 
